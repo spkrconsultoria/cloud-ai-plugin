@@ -1,6 +1,11 @@
 # Changelog
 
-## 0.1.0 (em desenvolvimento)
+## 0.1.1
+
+- Instruções de instalação: depois de instalar, sair e voltar com `claude --continue` em vez de `/clear`, para não perder a conversa.
+- Corrige o texto de atualização do guia no README.
+
+## 0.1.0
 
 - Esqueleto do marketplace e do plugin `spkr`.
 - Hooks `SessionStart` (contexto e `.spkr-cloudai/INSTRUCOES.md`) e `SessionEnd`.

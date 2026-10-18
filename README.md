@@ -23,6 +23,10 @@ O portal SPKR, na tela **Começar com Claude Code**, gera o seu token pessoal. D
 
 O Claude Code pede o token pessoal. O token fica no cofre do sistema, não em arquivo.
 
+Depois de instalar, **saia e volte à mesma conversa** para o plugin carregar o guia: digite `/exit` e rode `claude --continue` (no Desktop e nas IDEs, feche e reabra a sessão). Assim você não perde o trabalho da conversa. Evite o `/clear` para isso, porque ele limpa o histórico.
+
+Na primeira vez em uma pasta, se você tiver acesso a mais de um projeto, a IA pergunta qual usar. O guia do projeto escolhido já vale na mesma conversa; o arquivo `.spkr-cloudai/INSTRUCOES.md` é gravado quando a próxima sessão começa (`/exit` e `claude --continue`, `/compact` ou nova sessão).
+
 Este repositório não contém tokens nem dados de clientes. Licença: ver `LICENSE`.
 
 ## Requisitos
@@ -31,7 +35,7 @@ Claude Code com suporte a plugins. No Windows 10 (1803 ou mais novo) e no Window
 
 ## Atualizar o guia
 
-Rode `/clear`. O plugin baixa a versão mais recente. Se a API estiver fora do ar, vale a última versão gravada em `.spkr-cloudai/INSTRUCOES.md`.
+O plugin baixa a versão mais recente sempre que uma sessão começa, é retomada (`claude --continue`) ou é compactada (`/compact`). Para atualizar sem perder a conversa, saia com `/exit` e volte com `claude --continue`. Se a API estiver fora do ar, vale a última versão gravada em `.spkr-cloudai/INSTRUCOES.md`.
 
 ## Segurança
 
