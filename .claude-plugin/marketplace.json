@@ -1,0 +1,16 @@
+{
+  "name": "spkr-cloud-ai",
+  "owner": {
+    "name": "SPKR"
+  },
+  "metadata": {
+    "description": "Marketplace SPKR Cloud for AI: contexto de infraestrutura e conformidade da empresa dentro do Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "spkr",
+      "source": "./plugins/spkr",
+      "description": "Carrega o guia de conformidade da sua empresa no início de cada sessão do Claude Code."
+    }
+  ]
+}

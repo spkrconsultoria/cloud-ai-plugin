@@ -1,0 +1,26 @@
+{
+  "name": "spkr",
+  "displayName": "SPKR Cloud for AI",
+  "version": "0.1.0",
+  "description": "Carrega o guia de conformidade de infraestrutura da sua empresa no início de cada sessão e o mantém em .spkr-cloudai/INSTRUCOES.md.",
+  "author": {
+    "name": "SPKR"
+  },
+  "repository": "https://github.com/spkrconsultoria/spkr-cloud-ai-plugin",
+  "keywords": [
+    "spkr",
+    "conformidade",
+    "infraestrutura",
+    "guia"
+  ],
+  "userConfig": {
+    "token": {
+      "type": "string",
+      "title": "Token pessoal",
+      "description": "Token pessoal gerado no portal SPKR. Fica guardado no cofre do sistema.",
+      "required": true,
+      "sensitive": true
+    }
+  },
+  "license": "LicenseRef-SPKR-Proprietary"
+}

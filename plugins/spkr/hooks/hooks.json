@@ -1,0 +1,73 @@
+{
+  "description": "Busca o guia SPKR no início da sessão, mantém .spkr-cloudai/INSTRUCOES.md e registra o fim da sessão. Nenhum hook envia texto de prompt ou de resposta.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact|fork",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "--silent",
+              "--show-error",
+              "--fail",
+              "--max-time", "5",
+              "--request", "POST",
+              "--header", "Authorization: Bearer ${user_config.token}",
+              "--header", "Content-Type: application/json",
+              "--header", "User-Agent: spkr-claude-plugin/0.1.0",
+              "--data-binary", "@-",
+              "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-start"
+            ],
+            "timeout": 10,
+            "statusMessage": "Carregando contexto SPKR"
+          },
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "--silent",
+              "--show-error",
+              "--fail",
+              "--max-time", "5",
+              "--create-dirs",
+              "--request", "POST",
+              "--header", "Authorization: Bearer ${user_config.token}",
+              "--header", "Content-Type: application/json",
+              "--header", "Accept: text/markdown",
+              "--header", "User-Agent: spkr-claude-plugin/0.1.0",
+              "--data-binary", "@-",
+              "--output", "${CLAUDE_PROJECT_DIR}/.spkr-cloudai/INSTRUCOES.md",
+              "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-guide"
+            ],
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "--silent",
+              "--show-error",
+              "--fail",
+              "--max-time", "1",
+              "--request", "POST",
+              "--header", "Authorization: Bearer ${user_config.token}",
+              "--header", "Content-Type: application/json",
+              "--header", "User-Agent: spkr-claude-plugin/0.1.0",
+              "--data-binary", "@-",
+              "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-end"
+            ],
+            "timeout": 2
+          }
+        ]
+      }
+    ]
+  }
+}

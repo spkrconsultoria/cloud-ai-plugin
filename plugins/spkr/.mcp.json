@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "spkr": {
+      "type": "http",
+      "url": "https://cloudai.spkr.com.br/api/v1/plugin/mcp",
+      "headers": {
+        "Authorization": "Bearer ${user_config.token}"
+      }
+    }
+  }
+}
