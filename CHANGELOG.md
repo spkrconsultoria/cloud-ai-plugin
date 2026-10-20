@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0
+
+- Skill `novo-projeto`: conduz no chat a criação de projeto (perguntas do formulário da empresa, com sugestões baseadas na pasta e confirmação antes de criar) ou o registro de um workspace rápido, só com uma descrição, que pode ser convertido em projeto depois.
+- Servidor MCP: `spkr_project_form`, `spkr_project_create`, `spkr_workspace_register` e `spkr_workspace_promote`. Criar projeto e registrar workspace exigem um token com a opção "criar projetos e workspaces", emitida no portal.
+- Pasta sem projeto: o contexto da sessão passa a oferecer projeto existente, projeto novo ou workspace.
+
 ## 0.1.1
 
 - Instruções de instalação: depois de instalar, sair e voltar com `claude --continue` em vez de `/clear`, para não perder a conversa.

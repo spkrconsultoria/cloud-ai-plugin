@@ -1,5 +1,5 @@
 {
-  "description": "Busca o guia SPKR no início da sessão, mantém .spkr-cloudai/INSTRUCOES.md e registra o fim da sessão. Nenhum hook envia texto de prompt ou de resposta.",
+  "description": "Busca o guia SPKR no início da sessão, mantém .spkr-cloudai/INSTRUCOES.md, avisa a sessão de mudanças de política e do termo de uso a cada mensagem (só session_id e prompt_id) e registra o fim da sessão. Nenhum hook envia texto de prompt ou de resposta.",
   "hooks": {
     "SessionStart": [
       {
@@ -16,7 +16,7 @@
               "--request", "POST",
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
-              "--header", "User-Agent: spkr-claude-plugin/0.1.1",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.0",
               "--data-binary", "@-",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-start"
             ],
@@ -36,12 +36,28 @@
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
               "--header", "Accept: text/markdown",
-              "--header", "User-Agent: spkr-claude-plugin/0.1.1",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.0",
               "--data-binary", "@-",
               "--output", "${CLAUDE_PROJECT_DIR}/.spkr-cloudai/INSTRUCOES.md",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-guide"
             ],
             "timeout": 10
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "plugin:spkr:spkr",
+            "tool": "spkr_tick",
+            "input": {
+              "session_id": "${session_id}",
+              "prompt_id": "${prompt_id}"
+            },
+            "timeout": 5
           }
         ]
       }
@@ -60,7 +76,7 @@
               "--request", "POST",
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
-              "--header", "User-Agent: spkr-claude-plugin/0.1.1",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.0",
               "--data-binary", "@-",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-end"
             ],

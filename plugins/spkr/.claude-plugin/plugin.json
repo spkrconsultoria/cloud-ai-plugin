@@ -1,7 +1,7 @@
 {
   "name": "spkr",
   "displayName": "SPKR Cloud for AI",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Carrega o guia de conformidade de infraestrutura da sua empresa no início de cada sessão e o mantém em .spkr-cloudai/INSTRUCOES.md.",
   "author": {
     "name": "SPKR"
