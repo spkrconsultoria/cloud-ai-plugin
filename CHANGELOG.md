@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1
+
+- Skill `/spkr:de-acordo`: o usuário lê o resumo e o diff de uma mudança de política e responde por menu (De acordo, Discordo com motivo, Decidir depois). Discordar não libera o uso depois do prazo; a empresa acata publicando uma política nova.
+- Hook `SessionStart` ganha o `REVISOES.md` em `.spkr-cloudai/` (alterações aceitas), servido pelo servidor.
+- O hook de cada mensagem (`spkr_tick`) passa a enviar a pasta (`cwd`; o servidor guarda só um hash), mostra o lembrete do De acordo, bloqueia depois do prazo e recupera o contexto de abertura quando o `SessionStart` não rodou.
+- Servidor MCP: `spkr_notices`, `spkr_notice_ack` e `spkr_guide_diff` (12 ferramentas).
+
 ## 0.2.0
 
 - Skill `novo-projeto`: conduz no chat a criação de projeto (perguntas do formulário da empresa, com sugestões baseadas na pasta e confirmação antes de criar) ou o registro de um workspace rápido, só com uma descrição, que pode ser convertido em projeto depois.
