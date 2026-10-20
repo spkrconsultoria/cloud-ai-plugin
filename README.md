@@ -25,7 +25,7 @@ O Claude Code pede o token pessoal. Ele é tratado como sensível: não vai para
 
 Depois de instalar, **saia e volte à mesma conversa** para o plugin carregar o guia: digite `/exit` e rode `claude --continue` (no Desktop e nas IDEs, feche e reabra a sessão). Assim você não perde o trabalho da conversa. Evite o `/clear` para isso, porque ele limpa o histórico.
 
-Na primeira vez em uma pasta, se você tiver acesso a mais de um projeto, a IA pergunta qual usar. O guia do projeto escolhido já vale na mesma conversa; o arquivo `.spkr-cloudai/INSTRUCOES.md` é gravado logo depois de a IA vincular a pasta ou criar o projeto ou workspace, e de novo no início de cada sessão (`/exit` e `claude --continue`, `/compact` ou nova sessão).
+Na primeira vez em uma pasta, a IA pergunta qual projeto usar, mesmo que você tenha acesso a um só (só um token que o administrador restringiu a um único projeto vincula a pasta sozinho). Uma pasta ainda sem projeto pode ficar com uma pasta `.spkr-cloudai/` vazia até a escolha. O guia do projeto escolhido já vale na mesma conversa; o arquivo `.spkr-cloudai/INSTRUCOES.md` é gravado logo depois de a IA vincular a pasta ou criar o projeto ou workspace, e de novo no início de cada sessão (`/exit` e `claude --continue`, `/compact` ou nova sessão).
 
 Este repositório não contém tokens nem dados de clientes. Licença: ver `LICENSE`.
 

@@ -16,7 +16,7 @@
               "--request", "POST",
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
-              "--header", "User-Agent: spkr-claude-plugin/0.2.2",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.3",
               "--data-binary", "@-",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-start"
             ],
@@ -36,7 +36,7 @@
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
               "--header", "Accept: text/markdown",
-              "--header", "User-Agent: spkr-claude-plugin/0.2.2",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.3",
               "--data-binary", "@-",
               "--output", "${CLAUDE_PROJECT_DIR}/.spkr-cloudai/INSTRUCOES.md",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-guide"
@@ -56,7 +56,7 @@
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
               "--header", "Accept: text/markdown",
-              "--header", "User-Agent: spkr-claude-plugin/0.2.2",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.3",
               "--data-binary", "@-",
               "--output", "${CLAUDE_PROJECT_DIR}/.spkr-cloudai/REVISOES.md",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-revisions"
@@ -83,7 +83,7 @@
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
               "--header", "Accept: text/markdown",
-              "--header", "User-Agent: spkr-claude-plugin/0.2.2",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.3",
               "--data-binary", "@-",
               "--output", "${CLAUDE_PROJECT_DIR}/.spkr-cloudai/INSTRUCOES.md",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-guide"
@@ -125,7 +125,7 @@
               "--request", "POST",
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
-              "--header", "User-Agent: spkr-claude-plugin/0.2.2",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.3",
               "--data-binary", "@-",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-end"
             ],

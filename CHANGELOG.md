@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.3
+
+- Pasta sem projeto vinculado: a IA pergunta qual projeto usar mesmo quando o usuário enxerga um só, como já fazia com vários; o guia só é gravado depois da escolha. A regra é do servidor (`api`), então vale também para quem está na 0.2.2; só o token restrito a um projeto vincula sozinho.
+- README ajustado a esse comportamento.
+
 ## 0.2.2
 
 - Hook `PostToolUse` nas ferramentas `spkr_bind`, `spkr_project_create`, `spkr_workspace_register` e `spkr_workspace_promote`: o `INSTRUCOES.md` é gravado logo depois de vincular ou criar, sem esperar a próxima sessão.
