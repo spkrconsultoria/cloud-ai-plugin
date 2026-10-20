@@ -21,13 +21,17 @@ O portal SPKR, na tela **Começar com Claude Code**, gera o seu token pessoal. D
 /plugin install spkr@spkr-cloud-ai
 ```
 
-O Claude Code pede o token pessoal. O token fica no cofre do sistema, não em arquivo.
+O Claude Code pede o token pessoal. Ele é tratado como sensível: não vai para o `settings.json`; fica no cofre do sistema (no Linux, ou onde não houver cofre, em `~/.claude/.credentials.json`, segundo a documentação do Claude Code).
 
 Depois de instalar, **saia e volte à mesma conversa** para o plugin carregar o guia: digite `/exit` e rode `claude --continue` (no Desktop e nas IDEs, feche e reabra a sessão). Assim você não perde o trabalho da conversa. Evite o `/clear` para isso, porque ele limpa o histórico.
 
-Na primeira vez em uma pasta, se você tiver acesso a mais de um projeto, a IA pergunta qual usar. O guia do projeto escolhido já vale na mesma conversa; o arquivo `.spkr-cloudai/INSTRUCOES.md` é gravado quando a próxima sessão começa (`/exit` e `claude --continue`, `/compact` ou nova sessão).
+Na primeira vez em uma pasta, se você tiver acesso a mais de um projeto, a IA pergunta qual usar. O guia do projeto escolhido já vale na mesma conversa; o arquivo `.spkr-cloudai/INSTRUCOES.md` é gravado logo depois de a IA vincular a pasta ou criar o projeto ou workspace, e de novo no início de cada sessão (`/exit` e `claude --continue`, `/compact` ou nova sessão).
 
 Este repositório não contém tokens nem dados de clientes. Licença: ver `LICENSE`.
+
+## Trocar o token
+
+Sem desinstalar e sem reiniciar a sessão: rode `/plugin configure spkr@spkr-cloud-ai` (ou `/plugin`, aba **Installed**, Enter em `spkr`, **Configure options**), informe o novo token e salve. O Claude Code roda o `/reload-plugins` sozinho em seguida. Para conferir, peça à IA para chamar `spkr_whoami`: ele mostra o usuário e a empresa do token em uso. Se der 401, o token é de outro ambiente ou foi revogado. Se o valor antigo continuar em uso, saia com `/exit` e volte com `claude --continue`.
 
 ## Requisitos
 

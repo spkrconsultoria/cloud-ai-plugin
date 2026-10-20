@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2
+
+- Hook `PostToolUse` nas ferramentas `spkr_bind`, `spkr_project_create`, `spkr_workspace_register` e `spkr_workspace_promote`: o `INSTRUCOES.md` é gravado logo depois de vincular ou criar, sem esperar a próxima sessão.
+- README: como trocar o token com `/plugin configure`.
+- Skill `novo-projeto`: o identificador (slug) deixa de ser perguntado; a IA o deriva do nome do app, mostra no resumo como sugestão e o usuário confirma ou troca.
+
 ## 0.2.1
 
 - Skill `/spkr:de-acordo`: o usuário lê o resumo e o diff de uma mudança de política e responde por menu (De acordo, Discordo com motivo, Decidir depois). Discordar não libera o uso depois do prazo; a empresa acata publicando uma política nova.

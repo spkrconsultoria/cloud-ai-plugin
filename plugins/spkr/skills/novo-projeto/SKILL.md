@@ -24,16 +24,17 @@ Em caso de dúvida entre 2 e 3, pergunte: "Isso vai virar um app publicado ou é
    - `company_answers`: o que a empresa **já definiu**. **Não pergunte**. Use como restrição e cite quando ajudar a escolher (por exemplo "a empresa publica sempre na plataforma X");
    - `policies.temas`: índice das políticas da empresa; leia o tema pertinente com `spkr_policy` (`session_id` e `tema`) antes de sugerir uma opção que dependa dele.
 2. Olhe a pasta atual (arquivos, `README`, `Dockerfile`, dependências) para **propor** respostas. Marque cada proposta como sugestão e diga o motivo (por exemplo "vi `psycopg` nas dependências, então sugiro PostgreSQL").
-3. Pergunte **em blocos curtos**, por seção do formulário, no máximo uns cinco itens por vez, em linguagem natural. Para perguntas de escolha, mostre as opções com o rótulo e a dica (`hint`) quando existir, e recomende uma. Pule as perguntas cujo `showIf` seja falso.
-4. Se a resposta do usuário conflitar com `company_answers` ou com uma política, **explique o conflito** e proponha a alternativa permitida; a decisão é dele.
-5. Quando tiver tudo, mostre um **resumo** (pergunta, resposta e origem: "você", "sugestão confirmada por você" ou "definida pela empresa") e peça confirmação explícita para criar.
-6. Só depois do "sim" chame `spkr_project_create` com `answers` (só as perguntas de `questions`, nunca as de `company_answers`) e `confirmed: true`.
+3. **A pergunta de identificador (`type: "slug"`) não é feita ao usuário.** Pergunte antes o nome do app (a pergunta de `type: "text"` da seção de identificação) e, depois dele, **derive e proponha** o identificador: minúsculas, sem acentos, espaços e símbolos viram hífen, começa com letra, respeitando o `help` da pergunta (hoje 3 a 30 caracteres). Se você já conhece os projetos do usuário (`spkr_list_projects`), evite um identificador que já exista. Não pergunte por ele nem o mencione no meio das perguntas: ele aparece só no resumo do passo 5, marcado como "derivado do nome, sugestão". Se o usuário quiser outro, use o que ele disser.
+4. Pergunte **em blocos curtos**, por seção do formulário, no máximo uns cinco itens por vez, em linguagem natural. Para perguntas de escolha, mostre as opções com o rótulo e a dica (`hint`) quando existir, e recomende uma. Pule as perguntas cujo `showIf` seja falso.
+5. Se a resposta do usuário conflitar com `company_answers` ou com uma política, **explique o conflito** e proponha a alternativa permitida; a decisão é dele.
+6. Quando tiver tudo, mostre um **resumo** (pergunta, resposta e origem: "você", "sugestão confirmada por você", "derivado do nome, sugestão" para o identificador, ou "definida pela empresa") e peça confirmação explícita para criar.
+7. Só depois do "sim" chame `spkr_project_create` com `answers` (só as perguntas de `questions`, nunca as de `company_answers`) e `confirmed: true`.
    - `validation_failed`: o campo `fields` diz o que corrigir; peça só isso ao usuário.
-   - `project_exists`: sugira outro identificador (slug).
+   - `project_exists`: o identificador já existe; proponha outro derivado do nome (por exemplo com um sufixo) e confirme com o usuário antes de repetir.
    - `insufficient_scope`: o token deste usuário não tem a permissão de criar projetos (ou é restrito a alguns projetos); oriente a emitir um token com a opção "criar projetos e workspaces" no portal, ou a criar o projeto lá.
    - `questionnaire_not_configured`: a empresa ainda não configurou o questionário; oriente a falar com o administrador.
    - `tenant_required`: o usuário tem mais de uma empresa; pergunte qual e repita a chamada com `tenant`.
-7. Em caso de sucesso, a pasta já fica vinculada ao projeto e a resposta traz o `guide` (guia da versão). Passe a segui-lo nesta mesma conversa. Se `guide` vier nulo, diga o motivo (`guide_status` ou termo pendente) e não presuma regras.
+8. Em caso de sucesso, a pasta já fica vinculada ao projeto e a resposta traz o `guide` (guia da versão). Passe a segui-lo nesta mesma conversa. Um hook do plugin grava o `.spkr-cloudai/INSTRUCOES.md` logo em seguida; não escreva esse arquivo por conta própria. Se depois de criar o arquivo não existir, diga isso ao usuário (ele é gravado também no início da próxima sessão). Se `guide` vier nulo, diga o motivo (`guide_status` ou termo pendente) e não presuma regras.
 
 ## 3. Workspace rápido
 

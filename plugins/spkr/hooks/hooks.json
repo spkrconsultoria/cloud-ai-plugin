@@ -1,5 +1,5 @@
 {
-  "description": "Busca o guia SPKR no início da sessão, mantém .spkr-cloudai/INSTRUCOES.md e REVISOES.md, lembra o De acordo das mudanças de política e avisa do termo de uso a cada mensagem (só session_id, prompt_id e cwd, que o servidor guarda como hash) e registra o fim da sessão. Nenhum hook envia texto de prompt ou de resposta.",
+  "description": "Busca o guia SPKR no início da sessão e logo depois de vincular ou criar projeto ou workspace, mantém .spkr-cloudai/INSTRUCOES.md e REVISOES.md, lembra o De acordo das mudanças de política e avisa do termo de uso a cada mensagem (só session_id, prompt_id e cwd, que o servidor guarda como hash) e registra o fim da sessão. Nenhum hook envia texto de prompt ou de resposta.",
   "hooks": {
     "SessionStart": [
       {
@@ -16,7 +16,7 @@
               "--request", "POST",
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
-              "--header", "User-Agent: spkr-claude-plugin/0.2.1",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.2",
               "--data-binary", "@-",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-start"
             ],
@@ -36,7 +36,7 @@
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
               "--header", "Accept: text/markdown",
-              "--header", "User-Agent: spkr-claude-plugin/0.2.1",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.2",
               "--data-binary", "@-",
               "--output", "${CLAUDE_PROJECT_DIR}/.spkr-cloudai/INSTRUCOES.md",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-guide"
@@ -56,12 +56,40 @@
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
               "--header", "Accept: text/markdown",
-              "--header", "User-Agent: spkr-claude-plugin/0.2.1",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.2",
               "--data-binary", "@-",
               "--output", "${CLAUDE_PROJECT_DIR}/.spkr-cloudai/REVISOES.md",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-revisions"
             ],
             "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__plugin_spkr_spkr__spkr_bind|mcp__plugin_spkr_spkr__spkr_project_create|mcp__plugin_spkr_spkr__spkr_workspace_register|mcp__plugin_spkr_spkr__spkr_workspace_promote",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "--silent",
+              "--show-error",
+              "--fail",
+              "--max-time", "5",
+              "--create-dirs",
+              "--request", "POST",
+              "--header", "Authorization: Bearer ${user_config.token}",
+              "--header", "Content-Type: application/json",
+              "--header", "Accept: text/markdown",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.2",
+              "--data-binary", "@-",
+              "--output", "${CLAUDE_PROJECT_DIR}/.spkr-cloudai/INSTRUCOES.md",
+              "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-guide"
+            ],
+            "timeout": 10,
+            "statusMessage": "Gravando o guia SPKR"
           }
         ]
       }
@@ -97,7 +125,7 @@
               "--request", "POST",
               "--header", "Authorization: Bearer ${user_config.token}",
               "--header", "Content-Type: application/json",
-              "--header", "User-Agent: spkr-claude-plugin/0.2.1",
+              "--header", "User-Agent: spkr-claude-plugin/0.2.2",
               "--data-binary", "@-",
               "https://cloudai.spkr.com.br/api/v1/plugin/hooks/session-end"
             ],
